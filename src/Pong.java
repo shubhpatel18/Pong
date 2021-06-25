@@ -11,6 +11,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.util.Objects;
+
 public class Pong extends Application {
     private static final double WINDOW_WIDTH = 800;
     private static final double WINDOW_HEIGHT = 600;
@@ -84,8 +86,9 @@ public class Pong extends Application {
     public void start(Stage stage) {
         // set up window
         stage.setTitle("Pong");
-        stage.getIcons().add(new Image(Pong.class.getResourceAsStream("icon.png")));
+        stage.getIcons().add(new Image(Objects.requireNonNull(Pong.class.getResourceAsStream("icon.png"))));
         stage.setScene(new Scene(new StackPane(CANVAS)));
+        stage.setResizable(false);
         stage.show();
 
         // set key listeners

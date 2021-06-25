@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Pong"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.0.1"
 #define MyAppPublisher "Shubh Patel"
 #define MyAppURL "shubhpatel18.github.io"
 #define MyAppExeName "Pong.exe"
@@ -25,7 +25,7 @@ DisableProgramGroupPage=yes
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir=C:\Users\shubh\Documents\My Files\Development\Personal\Pong\installation
-OutputBaseFilename=Pong-Setup
+OutputBaseFilename=Pong-Setup-{#MyAppVersion}
 SetupIconFile=C:\Users\shubh\Documents\My Files\Development\Personal\Pong\resources\icon.ico
 Compression=lzma
 SolidCompression=yes
