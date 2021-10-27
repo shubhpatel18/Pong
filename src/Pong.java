@@ -26,6 +26,7 @@ public class Pong extends Application {
     private static final double TEXT_Y_OFFSET = 50;
 
     private static final double PADDLE_HEIGHT = 100;
+    private static final double PADDLE_HEIGHT_HANDICAP = 10;
     private static final double PADDLE_WIDTH = 16;
 
     private static final double BALL_RADIUS = 8;
@@ -125,7 +126,6 @@ public class Pong extends Application {
             if (!singlePlayer) {
                 singlePlayer = true;
                 twoPlayer = false;
-                score.reset();
             }
             recalculateAiTolerance();
             atMenu = false;
@@ -138,7 +138,6 @@ public class Pong extends Application {
             if (!twoPlayer) {
                 singlePlayer = false;
                 twoPlayer = true;
-                score.reset();
             }
             atMenu = false;
             showStart();
@@ -154,6 +153,7 @@ public class Pong extends Application {
 
     private void showMenu() {
         atMenu = true;
+        score.reset();
         reset();
         GC.setFill(Color.YELLOW);
         GC.fillText("Press 1 for Single Player", TEXT_X, TEXT_Y);
@@ -165,6 +165,7 @@ public class Pong extends Application {
         leftPaddle.reset();
         rightPaddle.reset();
         ball.reset();
+        handicap();
         recalculateAiTolerance();
         redraw();
     }
@@ -265,5 +266,12 @@ public class Pong extends Application {
             score.increaseLeft();
             showStart();
         }
+    }
+
+    private void handicap() {
+        double leftMinusRight = score.getLeft() - score.getRight();
+        double rightMinusLeft = score.getRight() - score.getLeft();
+        leftPaddle.setHeight(Math.max(PADDLE_HEIGHT, PADDLE_HEIGHT + PADDLE_HEIGHT_HANDICAP * rightMinusLeft));
+        rightPaddle.setHeight(Math.max(PADDLE_HEIGHT, PADDLE_HEIGHT + PADDLE_HEIGHT_HANDICAP * leftMinusRight));
     }
 }

@@ -7,22 +7,25 @@ public class Paddle {
 
     private final double X_POS_L;
     private final double X_POS_R;
-    private final double HEIGHT;
-    private final double Y_MAX;
-    private final double Y_MIN;
+    private double yMax;
+    private double yMin;
+    private double height;
+
+    private final Side side;
 
     private double yPos;
     private double speed;
     private Color color;
 
-    public Paddle(GraphicsContext gc, double xPosL, double xPosR, double height, double yMax, double yMin) {
+    public Paddle(GraphicsContext gc, double xPosL, double xPosR, double height, double yMax, double yMin, Side side) {
         this.GC = gc;
-        this.HEIGHT = height;
+        this.height = height;
         this.X_POS_L = xPosL;
         this.X_POS_R = xPosR;
-        this.Y_MAX = yMax - HEIGHT/2;
-        this.Y_MIN = yMin + HEIGHT/2;
+        this.yMax = yMax - this.height/2;
+        this.yMin = yMin + this.height/2;
         this.yPos = (yMax + yMin)/2;
+        this.side = side;
 
         // defaults
         this.speed = 10;
@@ -31,12 +34,12 @@ public class Paddle {
 
     public void moveDown() {
         yPos += speed;
-        if (yPos > Y_MAX) yPos = Y_MAX;
+        if (yPos > yMax) yPos = yMax;
     }
 
     public void moveUp() {
         yPos -= speed;
-        if (yPos < Y_MIN) yPos = Y_MIN;
+        if (yPos < yMin) yPos = yMin;
     }
 
     public boolean contains(double x, double y) {
@@ -50,22 +53,20 @@ public class Paddle {
         Paint old_color = GC.getFill();
 
         GC.setFill(color);
-        GC.fillRect(X_POS_L, yPos - HEIGHT/2, X_POS_R, HEIGHT);
+        GC.fillRect(X_POS_L, yPos - height/2, X_POS_R, height);
 
         // set old color back
         GC.setFill(old_color);
     }
 
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
+    public void setHeight(double height) {
+        this.yMax = this.yMax + this.height/2 - height/2;
+        this.yMin = this.yMin - this.height/2 + height/2;
+        this.height = height;
     }
 
     public void reset() {
-        this.yPos = (Y_MAX + Y_MIN)/2;
+        this.yPos = (yMax + yMin)/2;
     }
 
     public double getY() {

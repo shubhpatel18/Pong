@@ -29,6 +29,10 @@ public class ScoreBoard {
         rightScore++;
     }
 
+    public double getLeft() { return leftScore; }
+
+    public double getRight() { return rightScore; }
+
     public void draw() {
         // save old color
         Paint old_color = GC.getFill();
@@ -39,10 +43,6 @@ public class ScoreBoard {
 
         // set old color back
         GC.setFill(old_color);
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
     public void reset() {
