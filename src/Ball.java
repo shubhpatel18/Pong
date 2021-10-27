@@ -56,8 +56,16 @@ public class Ball {
         }
     }
 
+    private void updateColor() {
+        int rColorAdj = Math.min(60, (int) (20 * (speed - DEFAULT_SPEED)));
+        int gColorAdj = Math.min(255, (int) (20 * (speed - DEFAULT_SPEED)));
+        int bColorAdj = Math.min(255, (int) (40 * (speed - DEFAULT_SPEED)));
+        color = Color.rgb(255 - rColorAdj, 255 - gColorAdj, 255 - bColorAdj);
+    }
+
     public void bounceOffRight(double paddle_edge) {
         speed += SPEED_INCREASE;
+        updateColor();
         xVec = -1 * speed;
         yVec = Math.signum(yVec) * (.25 * speed + .5 * speed * Math.random());
         xPos = paddle_edge;
@@ -66,6 +74,7 @@ public class Ball {
 
     public void bounceOffLeft(double paddle_edge) {
         speed += SPEED_INCREASE;
+        updateColor();
         xVec = speed;
         yVec = Math.signum(yVec) * (.25 * speed + .5 * speed * Math.random());
         xPos = paddle_edge;
