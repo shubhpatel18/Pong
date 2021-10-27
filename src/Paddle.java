@@ -40,8 +40,8 @@ public class Paddle {
     }
 
     public boolean contains(double x, double y) {
-        boolean within_y = (y > yPos - HEIGHT/2) && (y < yPos + HEIGHT/2);
-        boolean within_x = (x > X_POS_L) && (x < X_POS_R);
+        boolean within_y = (y > yPos - height /2) && (y < yPos + height /2);
+        boolean within_x = (x > X_POS_L && side == Side.RIGHT) || (x < X_POS_R && side == Side.LEFT);
         return within_y && within_x;
     }
 
@@ -74,5 +74,18 @@ public class Paddle {
 
     public double getSpeed() {
         return speed;
+    }
+
+    public double getRightEdge() {
+        return X_POS_R;
+    }
+
+    public double getLeftEdge() {
+        return X_POS_L;
+    }
+
+    public enum Side {
+        RIGHT,
+        LEFT
     }
 }

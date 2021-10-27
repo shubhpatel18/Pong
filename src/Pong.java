@@ -72,8 +72,8 @@ public class Pong extends Application {
         TL = new Timeline(new KeyFrame(Duration.millis(16), e -> run()));
 
         // set up game elements
-        leftPaddle = new Paddle(GC, 0, PADDLE_WIDTH, PADDLE_HEIGHT, WINDOW_HEIGHT, 0);
-        rightPaddle = new Paddle(GC, WINDOW_WIDTH - PADDLE_WIDTH, WINDOW_WIDTH, PADDLE_HEIGHT, WINDOW_HEIGHT, 0);
+        leftPaddle = new Paddle(GC, 0, PADDLE_WIDTH, PADDLE_HEIGHT, WINDOW_HEIGHT, 0, Paddle.Side.LEFT);
+        rightPaddle = new Paddle(GC, WINDOW_WIDTH - PADDLE_WIDTH, WINDOW_WIDTH, PADDLE_HEIGHT, WINDOW_HEIGHT, 0, Paddle.Side.RIGHT);
         ball = new Ball(GC, WINDOW_HEIGHT, 0, WINDOW_WIDTH, 0, BALL_RADIUS);
         score = new ScoreBoard(GC, SCORE_HEIGHT, SCORE_LEFT_X, SCORE_RIGHT_X);
     }
