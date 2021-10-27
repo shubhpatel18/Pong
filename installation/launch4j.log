@@ -1,0 +1,16 @@
+
+
+Version:	3.14
+CmdLine:	C:\Users\shubh\Documents\My Files\Development\Personal\Pong\installation\Pong.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\shubh\Documents\My Files\Development\Personal\Pong\installation\.
+Java min ver:	
+Java max ver:	
+Bundled JRE(s):	jre
+Check launcher:	C:\Users\shubh\Documents\My Files\Development\Personal\Pong\installation\jre\bin\javaw.exe (OK)
+Main class:	Launcher
+Info:		Classpath not defined.
+Launcher:	C:\Users\shubh\Documents\My Files\Development\Personal\Pong\installation\jre\bin\javaw.exe
+Launcher args:	-classpath "C:\Users\shubh\Documents\My Files\Development\Personal\Pong\installation\Pong.exe" Launcher
+Args length:	103/32768 chars
+Exit code:	0
