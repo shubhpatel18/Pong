@@ -30,8 +30,8 @@ public class Pong extends Application {
 
     private static final double BALL_RADIUS = 8;
 
-    private static final double LEFT_GUTTER = PADDLE_WIDTH / 2;
-    private static final double RIGHT_GUTTER = WINDOW_WIDTH - PADDLE_WIDTH / 2;
+    private static final double LEFT_GUTTER = 0;
+    private static final double RIGHT_GUTTER = WINDOW_WIDTH;
 
     // variable distance ai paddle will try to reach between its center and the ball
     private double aiTolerance;
@@ -235,10 +235,16 @@ public class Pong extends Application {
     }
 
     private void checkPaddleCollisions() {
-        if (leftPaddle.contains(ball.getLeftEdge(), ball.getY())) {
-            ball.bounceOffLeft();
-        } else if (rightPaddle.contains(ball.getRightEdge(), ball.getY())) {
-            ball.bounceOffRight();
+        boolean ballBelowLeft = ball.getY() > leftPaddle.getY();
+        boolean ballBelowRight = ball.getY() > rightPaddle.getY();
+
+        double leftY = ballBelowLeft ? ball.getTopEdge() : ball.getBottomEdge();
+        double rightY = ballBelowRight ? ball.getTopEdge() : ball.getBottomEdge();
+
+        if (leftPaddle.contains(ball.getLeftEdge(), leftY)) {
+            ball.bounceOffLeft(leftPaddle.getRightEdge());
+        } else if (rightPaddle.contains(ball.getRightEdge(), rightY)) {
+            ball.bounceOffRight(rightPaddle.getLeftEdge());
             recalculateAiTolerance();
         }
     }

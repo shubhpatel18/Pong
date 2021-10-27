@@ -110,9 +110,13 @@ public class Ball {
         return xPos + RADIUS;
     }
 
-    public double getRightEdge() { return xPos + RADIUS; }
+    public double getBottomEdge() {
+        return yPos + RADIUS;
+    }
 
-    public double getXVec() { return xVec; }
+    public double getTopEdge() {
+        return yPos - RADIUS;
+    }
 
     public double getXVec() {
         return xVec;
